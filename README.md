@@ -1,6 +1,31 @@
 # Beyond the Seas
 
-A student higher-education planning project with a React interface and an Express/PostgreSQL backend. The source includes university browsing, academic-profile-based suggestions, shortlists, activity tracking and a discussion forum.
+**Explore graduate-study options in one place.** Beyond the Seas is a coursework web application that connects academic profiles, university discovery and application planning through a React interface and an Express/PostgreSQL backend.
+
+`React 18` · `Material UI` · `Node.js / Express` · `PostgreSQL`
+
+[Run the demo](#1-synthetic-ui-demo-no-database-or-credentials) · [Architecture](#architecture) · [Verification](docs/VERIFICATION.md)
+
+## Project highlights
+
+- **University exploration:** tabular browsing, sorting, pagination and scholarship filtering.
+- **Planning workflows:** source modules for shortlists, academic profiles and activities.
+- **Recommendation logic:** SQL-based matching against academic and funding criteria, not a claimed machine-learning model or verified admission predictor.
+- **Community features:** forum UI and API modules in the original application.
+- **Reproducible portfolio path:** an isolated, explicitly synthetic catalogue demo that requires no credentials or external database.
+
+The catalogue fixture is tested; original database-backed workflows remain unverified until the missing schema is restored. This distinction is intentional: a reviewer can explore the interface without mistaking sample outputs for validated recommendations.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    UI[React + Material UI] --> API[Express routes and controllers]
+    API --> DB[(PostgreSQL)]
+    UI -. Local catalogue walkthrough .-> Demo[Synthetic in-memory demo API]
+```
+
+The fixture adapter is separate from the original data-access layer. It never scrapes sites, imports personal records or connects to a live database.
 
 ## Two ways to explore
 
@@ -68,3 +93,4 @@ docker run --rm -p 127.0.0.1:3000:3000 -p 127.0.0.1:3002:3002 beyond-the-seas-de
 ```
 
 Ports are published only to host loopback. Docker execution has not been verified in the preparation environment.
+
