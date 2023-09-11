@@ -1,0 +1,10 @@
+FROM node:22-alpine
+WORKDIR /app
+COPY client/package*.json client/
+RUN npm ci --prefix client
+COPY client/ client/
+COPY Server/demo.js Server/demo.js
+ENV DEMO_HOST=0.0.0.0
+ENV REACT_APP_DEMO=true
+EXPOSE 3000 3002
+CMD ["sh", "-c", "node Server/demo.js & HOST=0.0.0.0 BROWSER=none npm start --prefix client"]

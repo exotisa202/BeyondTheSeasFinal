@@ -1,15 +1,6 @@
-import psycopg2
+"""Legacy scraper connection. Configuration uses standard PostgreSQL variables."""
 import os
-#from en_variable.set_env import set_env
-#set_env()
+import psycopg2
+
 def db_connection():
-    try:
-        conn=psycopg2.connect( 
-            user='postgres',
-            host='localhost',
-            database='BeyondTheSeas',
-            password='1234',
-            port= 5432)
-    except Exception as e:
-        print(e)
-    return conn
+    return psycopg2.connect(os.environ.get('DATABASE_URL', ''))

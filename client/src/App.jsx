@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HomeAnalysis from "./routes/home_analysis"; // Make sure to use uppercase component names
 import AnalysisSafeOption from "./routes/analysis_safe_option";
 import AnalysisProbableChances from "./routes/analysis_probable_chances";
@@ -22,8 +22,10 @@ const App = () => {
     
     <UniversityContextProvider>
       <div>
+        {process.env.REACT_APP_DEMO === "true" && <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:2000,padding:8,background:"#fff3cd",color:"#332701",textAlign:"center"}}>Synthetic demo: fictional universities, in-memory shortlist. Login, recommendations, forum and calendar are unavailable.</div>}
         <Router>
           <Routes>
+            <Route path="/" element={<Navigate to="/api/user/home" replace />} />
             <Route path="/api/user/nonPersonalized/:userID" element={<HomeAnalysis />} />
             <Route path="/api/user/personalized/:userID/ambitious" element={<AnalysisTooAmbitious />} />
             <Route path="/api/user/personalized/:userID/safe" element={<AnalysisSafeOption />} />

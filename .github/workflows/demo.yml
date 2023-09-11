@@ -1,0 +1,16 @@
+name: Local demo checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test Server/test/*.test.js
+      - run: npm ci --prefix client
+      # Existing coursework lint warnings are recorded, not promoted to build errors.
+      - run: CI=false npm run build --prefix client

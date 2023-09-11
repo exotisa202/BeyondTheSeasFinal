@@ -10,7 +10,7 @@ The client-server architecture allows for a clear separation of concerns, making
 
 # Stack
 
-### Backend : Django Rest Framework
+### Backend : Node.js / Express (implemented in `Server/`)
 
 ### Frontend : React 
 

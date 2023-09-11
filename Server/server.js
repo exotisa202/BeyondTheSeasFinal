@@ -132,7 +132,7 @@ app.use('/api/user',authRouter);
 
 
 
-const port=3002;
-app.listen(port,()=>{
+const port=Number(process.env.PORT || 3002);
+app.listen(port,process.env.HOST || '127.0.0.1',()=>{
     console.log(`Server is running on port ${port}`);
 })
