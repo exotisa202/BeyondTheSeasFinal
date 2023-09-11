@@ -8,7 +8,8 @@ Environment: isolated cloud workspace, Node.js 24; temporary synthetic HTTP serv
 - `npm ci --prefix Server --ignore-scripts`: passed.
 - Node syntax checks for server JavaScript: passed.
 - Full PostgreSQL API: **blocked**; complete schema/migrations are absent.
-- Browser interaction and visual verification: **not yet performed**.
+- Original Express process: started successfully; root request returned expected HTTP 404. Database endpoints remain unverified.
+- Browser interaction and visual verification: **blocked**. Chromium aborted before loading the page because the sandbox denied Unix socket creation.
 - Docker/Podman: unavailable in the preparation workspace; Dockerfile is supplied but not executed.
 
 The synthetic adapter is not a replacement for validating original recommendations, user authorization, forum or calendar workflows. Do not describe those workflows as tested.
